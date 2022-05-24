@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery.min.js"></script>
+    <title>Jeux</title>
+</head>
+<body>
+    <button id="stone" value="pierre">pierre</button>
+    <button id="paper" value="feuille">feuille</button>
+    <button id="scissor">ciseaux</button>
+    
+    <p id="textResult"></p>
+
+<script>
+
+        $("#stone").click(function(){
+            let iaMove = iaNumber();
+            $("#textResult").html("Joueur : Pierre / IA : "+iaMove+" ! "+winner("pierre", iaMove));
+        });
+ 
+        $("#paper").click(function(){
+            let iaMove = iaNumber();
+            
+            $("#textResult").html("Joueur : Feuille / IA : "+iaMove+" ! "+winner("feuille", iaMove));
+        });
+
+        $("#scissor").click(function(){
+            let iaMove = iaNumber();
+            
+            $("#textResult").html("Joueur : Ciseaux / IA : "+iaMove+" ! "+winner("ciseaux", iaMove));
+        });
+
+// Créez une fonction « Winner », elle prend 2 paramètres (Pierre feuille ciseaux du Joueur, ET, Pierre feuille ciseaux de l’Ordinateur)
+// Plusieurs conditions (si le joueur à fait pierre et l’ordinateur à fait ciseau etc...)
+// Elle retourne « Gagné », « Perdu », ou « Egalité »
+
+function winner(player,ia){
+    console.log(player,ia);
+    if (player === ia ) {
+        return "Bravo, égalité";
+    } else { 
+        if (player == "pierre") {
+            if (ia == "ciseaux") {
+                return "Gagné";
+            } else if (ia == "feuille") {
+                return "Perdu";
+            }
+        }
+        else if (player == "feuille") {
+            if (ia == "pierre"){
+                return "Gagné";
+            } else if (ia == "ciseaux") {
+                return "Perdu";
+            }
+        }
+        else if (player == "ciseaux") {
+            if (ia == "feuille") {
+                return "Gagné";
+            } else if (ia == "pierre") {
+                return "Perdu";
+            }
+        }
+    }
+}
+
+//Générer un chiffre aléatoire entre 1 et 3 (Ordinateur : 1 = Pierre, 2 = Feuille, 3 = Ciseaux)
+// console.log(nb);
+function iaNumber() { // fonction qui permet de retounrer pierre feuile ciseaux par rapport a un chiffre.
+    nb = Math.floor(Math.random() * 3) + 1; // random number formule.
+    // console.log(nb);
+    let iaChoose;
+    // console.log(iaChoose,nb);
+    if (nb == 1){
+        iaChoose = "pierre";
+        // console.log(iaChoose);
+    } else if (nb == 2) {
+        iaChoose = "feuille";
+        // console.log(iaChoose);
+    } else {
+        iaChoose = "ciseaux";
+        // console.log(iaChoose);
+    }
+    // console.log(iaChoose);
+    return iaChoose;
+}
+
+
+</script>
+
+</body>
+</html>
